@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to [Slidev](https://github.com/slidevjs/slidev)!
 
 To start the slide show:
@@ -9,3 +10,7 @@ To start the slide show:
 Edit the [slides.md](./slides.md) to see the changes.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
+=======
+# slidev-paf-orly
+Présentations PAF Orly
+>>>>>>> 16c9c1449a65664a94692e52e086d00d4e5d3e48
