@@ -305,10 +305,6 @@ mdc: true
 </style>
 
 <div class="hero">
-  <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-    <img src="/logo-ministere-interieur.png" style="height: 80px;" alt="Ministère de l'Intérieur" />
-    <img src="/logo-paf.png" style="height: 70px;" alt="PAF" />
-  </div>
   <div class="kicker">Police aux Frontières · Orly</div>
   <h1 class="title-xl">Organisation du contrôle transfrontière</h1>
   <div class="subtitle">
