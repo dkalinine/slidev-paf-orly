@@ -401,13 +401,13 @@ transition: fade-up
       <div class="step-p">Lire le flux, détecter le pic, mesurer la tension opérationnelle.</div>
     </div>
 
-    <div class="step" v-click>
+   <div class="step" v-click>
       <div class="step-n">02</div>
       <div class="step-t">Décider</div>
       <div class="step-p">Ouvrir, fermer, prioriser et adapter l’emploi des ressources disponibles.</div>
     </div>
 
-    <div class="step" v-click>
+   <div class="step" v-click>
       <div class="step-n">03</div>
       <div class="step-t">Réallouer</div>
       <div class="step-p">Aubettes, PARAFE, supervision et coordination terrain en temps réel.</div>
