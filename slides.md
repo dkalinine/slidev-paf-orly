@@ -3,50 +3,104 @@ theme: default
 title: DPAF Orly
 transition: fade
 mdc: true
-class: text-white
 ---
 
 <style>
+/* === Fonts Marianne (embarquées localement) === */
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Variables DSFR === */
 :root {
-  --bg-1: #06101d;
-  --bg-2: #0d1d33;
-  --bg-3: #133055;
-  --line: rgba(255,255,255,0.10);
-  --text: #eef4ff;
-  --muted: #9db0c8;
-  --accent: #6cc6ff;
-  --accent-2: #8ea2ff;
-  --glass: rgba(255,255,255,0.07);
+  --blue-france: #000091;
+  --red-marianne: #e1000f;
+  --bg-primary: #ffffff;
+  --bg-alt: #f6f6f6;
+  --bg-contrast: #e5e5e5;
+  --text-primary: #161616;
+  --text-secondary: #666666;
+  --text-inverted: #ffffff;
+  --border-default: #e5e5e5;
+  --border-active: #000091;
+  --shadow-sm: 0 2px 6px rgba(0,0,9,0.08);
+  --shadow-md: 0 6px 18px rgba(0,0,9,0.12);
+  --shadow-lg: 0 12px 32px rgba(0,0,9,0.16);
+}
+
+/* === Base Slidev === */
+.slidev-layout,
+.slidev-layout * {
+  font-family: 'Marianne', arial, sans-serif;
 }
 
 .slidev-layout {
-  color: var(--text);
-  background:
-    radial-gradient(circle at 15% 20%, rgba(108,198,255,.14), transparent 22%),
-    radial-gradient(circle at 85% 12%, rgba(142,162,255,.12), transparent 24%),
-    linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, var(--bg-3));
+  color: var(--text-primary);
+  background: var(--bg-primary);
 }
 
+/* Bande tricolore en haut de chaque slide */
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--blue-france) 0%, var(--blue-france) 33%,
+    var(--bg-primary) 33%, var(--bg-primary) 66%,
+    var(--red-marianne) 66%, var(--red-marianne) 100%
+  );
+  z-index: 10;
+}
+
+/* === Animations === */
 .fade-up-enter-active,
 .fade-up-leave-active {
-  transition: all .6s cubic-bezier(.22,1,.36,1);
+  transition: all .5s cubic-bezier(.22,1,.36,1);
 }
 .fade-up-enter-from,
 .fade-up-leave-to {
   opacity: 0;
-  transform: translateY(24px) scale(.985);
-  filter: blur(10px);
+  transform: translateY(20px);
 }
 
 .slidev-vclick-target {
-  transition: all .45s cubic-bezier(.22,1,.36,1);
+  transition: all .4s cubic-bezier(.22,1,.36,1);
 }
 .slidev-vclick-hidden {
   opacity: 0;
-  transform: translateY(18px);
-  filter: blur(8px);
+  transform: translateY(14px);
   pointer-events: none;
 }
+
+/* === Composants de présentation DSFR === */
 
 .hero,
 .full-center {
@@ -61,227 +115,200 @@ class: text-white
   text-align: center;
 }
 
-.rel {
-  position: relative;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(34px);
-  opacity: .42;
-}
-.orb.a {
-  width: 240px;
-  height: 240px;
-  right: 8%;
-  top: 10%;
-  background: #4cc4ff;
-}
-.orb.b {
-  width: 180px;
-  height: 180px;
-  left: 6%;
-  bottom: 10%;
-  background: #7887ff;
-}
-
 .kicker {
   text-transform: uppercase;
-  letter-spacing: .24em;
+  letter-spacing: .2em;
   font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 18px;
+  font-weight: 700;
+  color: var(--red-marianne);
+  margin-bottom: 16px;
 }
 
 .title-xl {
-  font-size: 62px;
-  line-height: 1.02;
-  font-weight: 800;
-  max-width: 980px;
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 700;
+  max-width: 920px;
   margin: 0;
+  color: var(--blue-france);
 }
 
 .title-lg {
-  font-size: 48px;
-  line-height: 1.06;
-  font-weight: 800;
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
   margin: 0;
+  color: var(--text-primary);
 }
 
 .subtitle {
-  margin-top: 22px;
+  margin-top: 20px;
   max-width: 760px;
-  font-size: 22px;
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-.shimmer {
-  background: linear-gradient(90deg, #ffffff, #8fd7ff, #b7c6ff, #ffffff);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 7s linear infinite;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: 1.15fr .85fr;
-  gap: 28px;
+  gap: 32px;
   align-items: center;
 }
 
 .card {
-  background: var(--glass);
-  border: 1px solid var(--line);
-  border-radius: 26px;
-  padding: 26px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
 }
 
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .kpi {
-  border-radius: 20px;
-  padding: 18px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
 }
 
 .kpi-num {
-  font-size: 40px;
+  font-size: 36px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 700;
+  color: var(--blue-france);
 }
 
 .kpi-label {
-  margin-top: 8px;
-  font-size: 13px;
-  letter-spacing: .08em;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 .big-number {
-  font-size: 120px;
+  font-size: 110px;
   line-height: .95;
-  font-weight: 900;
+  font-weight: 700;
   margin: 0;
+  color: var(--blue-france);
 }
 
 .big-sub {
-  margin-top: 16px;
-  font-size: 24px;
-  color: var(--muted);
-  letter-spacing: .08em;
+  margin-top: 14px;
+  font-size: 22px;
+  color: var(--text-secondary);
+  letter-spacing: .06em;
   text-transform: uppercase;
 }
 
 .balance {
   display: grid;
-  grid-template-columns: 1fr 120px 1fr;
+  grid-template-columns: 1fr 100px 1fr;
   gap: 20px;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .pillar {
-  border-radius: 26px;
-  padding: 34px;
+  border-radius: 8px;
+  padding: 32px;
   text-align: center;
-  font-size: 34px;
-  font-weight: 800;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.06);
-  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  font-size: 30px;
+  font-weight: 700;
+  border: 2px solid var(--blue-france);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-sm);
+  color: var(--blue-france);
 }
 
 .vs {
   text-align: center;
-  font-size: 30px;
-  font-weight: 900;
-  color: var(--accent);
-  letter-spacing: .08em;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--red-marianne);
+  letter-spacing: .06em;
 }
 
 .flow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 26px;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .step {
-  border-radius: 22px;
-  padding: 24px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid var(--line);
-  min-height: 210px;
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-default);
+  border-top: 3px solid var(--blue-france);
+  min-height: 200px;
 }
 
 .step-n {
   font-size: 12px;
-  letter-spacing: .18em;
-  color: var(--accent);
+  letter-spacing: .16em;
+  color: var(--blue-france);
   text-transform: uppercase;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .step-t {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
 .step-p {
-  color: var(--muted);
-  line-height: 1.45;
-  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-size: 16px;
 }
 
 .list-premium {
   display: grid;
-  gap: 14px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .list-item {
-  padding: 18px 20px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.05);
-  font-size: 24px;
-  font-weight: 700;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-default);
+  border-left: 4px solid var(--blue-france);
+  background: var(--bg-alt);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .final-box {
-  padding: 38px 44px;
-  border-radius: 30px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.06);
-  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+  padding: 36px 40px;
+  border-radius: 8px;
+  border: 2px solid var(--blue-france);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-lg);
 }
 
-@keyframes shimmer {
-  to { background-position: 220% center; }
+.final-box .title-lg {
+  color: var(--blue-france);
 }
 </style>
 
-<div class="hero rel">
-  <div class="orb a"></div>
-  <div class="orb b"></div>
+<div class="hero">
   <div class="kicker">Police aux Frontières · Orly</div>
-  <h1 class="title-xl shimmer">Organisation du contrôle transfrontière</h1>
+  <h1 class="title-xl">Organisation du contrôle transfrontière</h1>
   <div class="subtitle">
-    Une lecture visuelle et cinématique de la mission : pression, arbitrage, adaptation.
+    Une lecture visuelle de la mission : pression, arbitrage, adaptation.
   </div>
 </div>
 
@@ -295,7 +322,7 @@ transition: fade-up
     :initial="{ opacity: 0, y: 40, scale: 0.96 }"
     :enter="{ opacity: 1, y: 0, scale: 1, transition: { duration: 800 } }"
   >
-    <h1 class="big-number shimmer">13 M</h1>
+    <h1 class="big-number">13 M</h1>
     <div class="big-sub">de passagers contrôlés par an</div>
   </div>
 </div>
@@ -312,7 +339,6 @@ transition: fade-up
       Variabilité du trafic, concentration des pics, contrainte de temps et exigence de sécurité maximale.
     </div>
   </div>
-
   <div
     class="card"
     v-motion
@@ -342,14 +368,12 @@ transition: fade-up
 
 <div>
   <div class="kicker">Enjeu central</div>
-  <h1 class="title-lg">Trouver l’équilibre</h1>
-
+  <h1 class="title-lg">Trouver l'équilibre</h1>
   <div class="balance">
-    <div class="pillar" v-click>🔒 Sécurité</div>
+    <div class="pillar" v-click>Sécurité</div>
     <div class="vs" v-click>VS</div>
-    <div class="pillar" v-click>🚶 Fluidité</div>
+    <div class="pillar" v-click>Fluidité</div>
   </div>
-
   <div class="subtitle" v-after>
     Toute la difficulté réside dans la capacité à absorber le flux sans affaiblir la qualité du contrôle.
   </div>
@@ -362,7 +386,6 @@ transition: fade-up
 <div>
   <div class="kicker">Complexité opérationnelle</div>
   <h1 class="title-lg">Des temps de contrôle hétérogènes</h1>
-
   <div class="list-premium">
     <div class="list-item" v-click>Union européenne · contrôle rapide</div>
     <div class="list-item" v-click>Pays tiers non éligibles EES · contrôle plus long</div>
@@ -378,10 +401,9 @@ transition: fade-up
 <div>
   <div class="kicker">Risque</div>
   <h1 class="title-lg">Une ressource contrainte face à des pics irréguliers</h1>
-
   <div class="list-premium">
     <div class="list-item" v-click>Effectifs limités</div>
-    <div class="list-item" v-click>Rigidité relative de l’organisation horaire</div>
+    <div class="list-item" v-click>Rigidité relative de l'organisation horaire</div>
     <div class="list-item" v-click>Variabilité forte selon les vols et créneaux</div>
   </div>
 </div>
@@ -393,21 +415,18 @@ transition: fade-up
 <div>
   <div class="kicker">Réponse opérationnelle</div>
   <h1 class="title-lg">Adapter, piloter, réallouer</h1>
-
   <div class="flow">
     <div class="step" v-click>
       <div class="step-n">01</div>
       <div class="step-t">Observer</div>
       <div class="step-p">Lire le flux, détecter le pic, mesurer la tension opérationnelle.</div>
     </div>
-
-   <div class="step" v-click>
+    <div class="step" v-click>
       <div class="step-n">02</div>
       <div class="step-t">Décider</div>
-      <div class="step-p">Ouvrir, fermer, prioriser et adapter l’emploi des ressources disponibles.</div>
+      <div class="step-p">Ouvrir, fermer, prioriser et adapter l'emploi des ressources disponibles.</div>
     </div>
-
-   <div class="step" v-click>
+    <div class="step" v-click>
       <div class="step-n">03</div>
       <div class="step-t">Réallouer</div>
       <div class="step-p">Aubettes, PARAFE, supervision et coordination terrain en temps réel.</div>
@@ -422,7 +441,6 @@ transition: fade-up
 <div>
   <div class="kicker">Facteurs de succès</div>
   <h1 class="title-lg">Trois leviers décisifs</h1>
-
   <div class="list-premium">
     <div class="list-item" v-click>Anticipation</div>
     <div class="list-item" v-click>Coordination interservices</div>
@@ -438,7 +456,7 @@ transition: fade-up
   <div class="final-box">
     <div class="kicker">Message final</div>
     <h1 class="title-lg" style="max-width: 900px;">
-      La performance repose sur l’organisation, l’anticipation et la capacité d’adaptation.
+      La performance repose sur l'organisation, l'anticipation et la capacité d'adaptation.
     </h1>
   </div>
 </div>
