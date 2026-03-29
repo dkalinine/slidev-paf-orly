@@ -1,0 +1,111 @@
+/* ===================================================
+   Thème DSFR (Design System de l'État Français)
+   pour Slidev — PAF Orly
+   =================================================== */
+
+/* --- Fonts Marianne (embarquées localement) --- */
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('/fonts/Marianne-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Variables DSFR --- */
+:root {
+  /* Couleurs primaires */
+  --blue-france: #000091;
+  --blue-france-light: #000074;
+  --blue-france-hover: #1212ff;
+  --red-marianne: #e1000f;
+
+  /* Fond & surface */
+  --bg-primary: #ffffff;
+  --bg-alt: #f6f6f6;
+  --bg-contrast: #e5e5e5;
+  --bg-blue: #000091;
+
+  /* Texte */
+  --text-primary: #161616;
+  --text-secondary: #666666;
+  --text-inverted: #ffffff;
+  --text-blue: #000091;
+
+  /* Bordures */
+  --border-default: #e5e5e5;
+  --border-active: #000091;
+
+  /* Ombres */
+  --shadow-sm: 0 2px 6px rgba(0,0,9,0.08);
+  --shadow-md: 0 6px 18px rgba(0,0,9,0.12);
+  --shadow-lg: 0 12px 32px rgba(0,0,9,0.16);
+}
+
+/* --- Base Slidev --- */
+* {
+  font-family: 'Marianne', arial, sans-serif !important;
+}
+
+.slidev-layout {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-family: 'Marianne', arial, sans-serif;
+}
+
+/* Bande tricolore en haut de chaque slide */
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--blue-france) 0%, var(--blue-france) 33%,
+    var(--bg-primary) 33%, var(--bg-primary) 66%,
+    var(--red-marianne) 66%, var(--red-marianne) 100%
+  );
+  z-index: 10;
+}
+
+/* --- Animations Slidev --- */
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all .5s cubic-bezier(.22,1,.36,1);
+}
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slidev-vclick-target {
+  transition: all .4s cubic-bezier(.22,1,.36,1);
+}
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
